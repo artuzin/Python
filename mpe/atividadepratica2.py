@@ -1,5 +1,5 @@
 import pandas as pd
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import seaborn as sb
 
 dados = pd.read_csv('C:\\Usuários\\artur\\OneDrive\\Documentos\\GitHub\\Python\\mpe\\TabelaSalarial.csv')
@@ -7,6 +7,8 @@ dados = pd.read_csv('C:\\Usuários\\artur\\OneDrive\\Documentos\\GitHub\\Python\
 dados = dados.drop(columns=["N"])
 
 colunas_numeros = dados.select_dtypes(include=['number'])
+
+sb.set(style='whitegrid')
 
 print(dados.head())
 
@@ -21,4 +23,21 @@ print("Medianas: \n", median_values)
 print("Desvio Padrão: \n", std_values)
 print("Variâncias: \n", var_values)
 print("Amplitude: \n", range_values)
+
+plt.figure(figsize=(15, 10))
+for i, coluna in enumerate(colunas_numeros.columns, 1):
+    plt.subplot(2, 2, i)
+    sb.histplot(data=colunas_numeros, x=coluna, kde=True, bins=30, color='purple')
+    plt.title(f'Histograma de {coluna}')
+plt.tight_layout()
+plt.show()
+
+plt.figure(figsize=(15,10))
+for i, coluna in enumerate(colunas_numeros.columns, 1):
+    plt.subplot(2, 2, i)
+    sb.boxplot(data=colunas_numeros, y=coluna, color='yellow')
+    plt.title(f'Boxplot de {coluna}')   
+plt.tight_layout()
+plt.show()
+
 
