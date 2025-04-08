@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sb
 
-dados = pd.read_csv('C:\\Usuários\\artur\\OneDrive\\Documentos\\GitHub\\Python\\mpe\\TabelaSalarial.csv')
+dados = pd.read_csv('TabelaSalarial.csv')
 
 dados = dados.drop(columns=["N"])
 
